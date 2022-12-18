@@ -52,37 +52,41 @@ function itemSearch(itemName, searchType) {
 
 function renderItems(data) {
     itemsDiv.innerHTML = "";
-    data.meals.forEach((meal) => {
-        fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
-            .then(response => response.json())
-            .then((data) => {
-                let item = document.createElement("div");
-                item.classList.add("item");
-                item.setAttribute("data-id", `${data.meals[0].idMeal}`)
-                let content = "";
-                content = `                            
-                    <div class="img">
-                        <img src="${data.meals[0].strMealThumb}" alt="">
-                    </div>
-                    <div class="item-info">
-                        <h2>${data.meals[0].strMeal}</h2>
-                        <p>
-                            ${data.meals[0].strInstructions.substring(0, 90) + ". . ."}
-                        </p>
-                    </div>
-                    <div class="buttons">
-                        <a href="
-                            ${data.meals[0].strYoutube}
-                        ">
-                            <button><i class="fa-solid fa-play"></i> play Video</button>
-                        </a>
-                        <a href="">
-                            <button>view recipe</button>
-                        </a>
-                    </div>
-                `;
-                item.innerHTML = content;
-                itemsDiv.appendChild(item);
-            })
-    })
+    if (data) {
+        data.meals.forEach((meal) => {
+            fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
+                .then(response => response.json())
+                .then((data) => {
+                    let item = document.createElement("div");
+                    item.classList.add("item");
+                    item.setAttribute("data-id", `${data.meals[0].idMeal}`)
+                    let content = "";
+                    content = `                            
+                        <div class="img">
+                            <img src="${data.meals[0].strMealThumb}" alt="">
+                        </div>
+                        <div class="item-info">
+                            <h2>${data.meals[0].strMeal}</h2>
+                            <p>
+                                ${data.meals[0].strInstructions.substring(0, 90) + ". . ."}
+                            </p>
+                        </div>
+                        <div class="buttons">
+                            <a href="
+                                ${data.meals[0].strYoutube}
+                            ">
+                                <button><i class="fa-solid fa-play"></i> play Video</button>
+                            </a>
+                            <a href="">
+                                <button>view recipe</button>
+                            </a>
+                        </div>
+                    `;
+                    item.innerHTML = content;
+                    itemsDiv.appendChild(item);
+                })
+        })
+    } else {
+        itemsDiv.innerHTML = `<h2>Please make sure</h2>`
+    }
 }
