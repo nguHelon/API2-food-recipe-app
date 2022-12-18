@@ -32,27 +32,27 @@ function itemSearch(itemName, searchType) {
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${itemName}`)
             .then(response => response.json())
             .then((data) => {
-                renderItems(data);
+                renderItems(data, searchType);
             })
     } else if (searchType.includes("area")) {
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${itemName}`)
             .then(response => response.json())
             .then((data) => {
-                renderItems(data);
+                renderItems(data, searchType);
             })
     } else if (searchType.includes("name")) {
         fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${itemName}`)
             .then(response => response.json())
             .then((data) => {
-                renderItems(data);
+                renderItems(data, searchType);
             })
     }
 
 }
 
-function renderItems(data) {
+function renderItems(data, searchType) {
     itemsDiv.innerHTML = "";
-    if (data) {
+    if (data.meals != null) {
         data.meals.forEach((meal) => {
             fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`)
                 .then(response => response.json())
@@ -87,6 +87,6 @@ function renderItems(data) {
                 })
         })
     } else {
-        itemsDiv.innerHTML = `<h2>Please make sure</h2>`
+        itemsDiv.innerHTML = `<h2>Sorry, we can't find meals from your search, Please make sure you are searching by ${searchType}</h2>`
     }
 }
