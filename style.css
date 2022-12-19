@@ -49,7 +49,7 @@
   cursor: pointer;
 }
 
-.header .more-info .icons > i {
+.header .more-info .icons i.fa-github {
   font-size: 25px;
   cursor: pointer;
 }
@@ -303,7 +303,7 @@
   cursor: pointer;
 }
 
-.items-div .item .buttons a:last-child button {
+.items-div .item .buttons .recipeBtn:last-child {
   background-color: black;
   color: white;
 }
@@ -323,10 +323,13 @@
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.recipe-details.showRecipe {
+  display: flex;
 }
 
 .recipe-details::-webkit-scrollbar {

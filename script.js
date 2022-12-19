@@ -2,6 +2,7 @@ const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 const selectInput = document.getElementById("selectInput");
 const itemsDiv = document.querySelector(".items-div");
+const recipeDetails = document.querySelector(".recipe-details");
 
 //www.themealdb.com/api/json/v1/1/list.php?i=list
 
@@ -77,16 +78,56 @@ function renderItems(data, searchType) {
                             ">
                                 <button><i class="fa-solid fa-play"></i> play Video</button>
                             </a>
-                            <a href="">
-                                <button>view recipe</button>
-                            </a>
+                                <button class="recipeBtn">view recipe</button>
                         </div>
                     `;
+
+
                     item.innerHTML = content;
                     itemsDiv.appendChild(item);
+
+                    let recipeBtns = itemsDiv.querySelectorAll(".item .buttons .recipeBtn");
+                    recipeBtns.forEach((button) => {
+                        button.addEventListener("click", (e) => {
+                            let itemId = e.currentTarget.parentElement.parentElement.dataset.id;
+                            if (itemId == data.meals[0].idMeal) {
+                                showRecipeDetails(itemId);
+                                recipeDetails.classList.add("showRecipe");
+                            }
+                        })
+                    })
                 })
         })
     } else {
         itemsDiv.innerHTML = `<h2>Sorry, we can't find meals from your search, Please make sure you are searching by ${searchType}</h2>`
     }
+}
+
+function showRecipeDetails(itemId) {
+
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${itemId}`)
+        .then(response => response.json())
+        .then((data) => {
+            data.meals.forEach((meal) => {
+                let contents = `
+                    <div class="img">
+                        <img src="${meal.strMealThumb}" alt="">
+                    </div>
+                    <h2>${meal.strMeal}</h2>
+                    <p class="recipe-text">
+                        ${meal.strInstructions}
+                    </p>
+                    <div class="specifications">
+                        <button class="category">${meal.strCategory}</button>
+                        <button class="area">${meal.strArea}</button>
+                    </div>
+                    <i class="fa-solid fa-xmark"></i>
+                `;
+                recipeDetails.innerHTML = contents;
+                let closeBtn = recipeDetails.querySelector("i.fa-xmark");
+                closeBtn.addEventListener("click", () => {
+                    recipeDetails.classList.remove("showRecipe");
+                })
+            })
+        })
 }
