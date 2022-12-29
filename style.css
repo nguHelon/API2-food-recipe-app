@@ -86,15 +86,15 @@
   width: 100%;
   height: 200px;
   padding: 0 20px;
-  margin: 20px 0;
+  margin: 70px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .introduction .developer-info {
   flex-basis: 70%;
-  height: 100%;
+  height: auto;
   background-color: rgb(240, 224, 219);
   padding: 10px;
   border-radius: 10px;
@@ -102,8 +102,17 @@
   justify-content: space-between;
 }
 
+.developer-info .dev1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
 .developer-info .dev-name {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .developer-info .dev-name button {
@@ -132,67 +141,6 @@
   height: 100%;
   width: 100%;
   border-radius: 50%;
-}
-
-.developer-info .dev2 {
-  width: 180px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.developer-info .dev2 .icons {
-  height: 70%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-}
-
-.developer-info .dev2 .icons i {
-  font-size: 50px;
-}
-
-.developer-stats {
-  flex-basis: 25%;
-  height: 100%;
-  background-color: black;
-  color: white;
-  border-radius: 10px;
-  padding: 0 20px;
-  text-align: left;
-}
-
-.developer-stats .more .mores {
-  width: 100%;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.developer-stats > h2 {
-  margin-bottom: 10px;
-  color: rgb(197, 197, 197);
-  font-weight: lighter;
-}
-
-.developer-stats .more .mores .icon {
-  height: 50px;
-  width: 50px;
-  font-size: 22px;
-  border-radius: 50%;
-  background: white;
-  color: black;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.developer-stats .more .mores .passion-info p {
-  color: gray;
 }
 
 .items-section {
@@ -410,4 +358,126 @@
   border-radius: 50%;
   font-weight: bold;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1050px) {
+  .container .header {
+    padding: 8px 2%;
+  }
+
+  .header .more-info {
+    justify-content: flex-end;
+  }
+
+  .items-div {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .item-section .item-actions h2 {
+    display: none;
+  }
+
+  .item-section .item-actions .inputs {
+    flex-basis: 60%;
+  }
+
+  .items-div {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header .more-info {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header .more-info .icons {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .header .more-info .account-info {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .introduction .developer-info {
+    flex-basis: 90%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .item-section .item-actions {
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .item-section .item-actions .inputs {
+    width: 90%;
+  }
+
+  .recipe-details {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container .header > p {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .items-div {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .container .header {
+    padding: 4px 1%;
+  }
+
+  .header .more-info .icons button {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .introduction .developer-info {
+    flex-basis: 100%;
+  }
+
+  .developer-info .dev-name button {
+    outline: none;
+    border: none;
+    padding: 6px 8px;
+    font-size: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .dev-quote .dev-more h2 {
+    font-size: 17px;
+  }
+
+  .dev-quote .dev-more p {
+    font-size: 14px;
+  }
+
+  .item-section .item-actions {
+    padding: 0px;
+  }
+
+  .item-section .item-actions .inputs {
+    width: 100%;
+  }
 }
